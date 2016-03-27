@@ -2,6 +2,7 @@ package elevator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
 
 /**
  * Title:        Green Elevator
@@ -64,14 +65,19 @@ public class ElevatorGraphics {
 	  if(position < 0.0) {
             boxdir = Elevators.STOP;
             position = (double)0.0;
+            presentation(number);
 	  }
 	  if(position > topFloor) {
 	      boxdir = Elevators.STOP;
 	      position = topFloor;
+          presentation(number);
 	  }
 	  //write back position and direction;
 	  allElevators[number].Setpos(position);
 	  allElevators[number].Setdir(boxdir);
+      if(Math.abs(position - (int)position) == 0){
+          presentation(number);
+      }
       }
     }
     // to guarantee atomicity of this read-modify-write
@@ -102,7 +108,6 @@ public class ElevatorGraphics {
    * requests to repaint the elevator if the old state has changed, stores the new
    * state as the old state. Invoked on an event from the application Timer of the
    * ElevatorGUI object.
-   * @param number is the elevator number to be animated
    * @see #animate(int)
    */
   public void animateAll() { // animate all elevators
