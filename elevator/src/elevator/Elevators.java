@@ -292,7 +292,7 @@ public class Elevators {
    * if the application starts with -tcp option.
    * Defaults to 4711. Can be changed with "-tcpout port" command line argument.
    */
-  protected static int outPort = defaultPort;
+  protected static int outPort = defaultPort + 1;
   /**
    * The name of the host where rmiregitry provides Naming service. Defaults to
    * "localhost". Can be changed by calling the <code>init</code> static method

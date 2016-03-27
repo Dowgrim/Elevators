@@ -61,7 +61,8 @@ public class Elevator {
     this.number = number;
   }
   /**
-   * Sets position of the elevator cabin to the specified double value.
+   * Sets position of the ElevatorIO
+   * cabin to the specified double value.
    * @param f float position to be set.
    */
   public void Setpos(double f) {
@@ -143,7 +144,7 @@ public class Elevator {
   /**
    * Sets a GUI component (e.g. gauge) with the <code>javax.swing.JComponent</code>
    * class used to display the scale value of this <code>Elevator<code>.
-   * @param w <code>JComponent</code> to be set.
+   * @param s <code>JComponent</code> to be set.
    */
   public void Setscale(JComponent s) {
     scale = s;

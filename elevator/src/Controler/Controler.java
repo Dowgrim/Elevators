@@ -1,5 +1,12 @@
 package Controler;
 
+import elevator.rmi.Elevators;
+import elevator.rmi.MakeAll;
+
+import java.awt.event.ActionEvent;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -7,10 +14,14 @@ import java.util.ArrayList;
  */
 public class Controler {
 
-    private ArrayList<Connector> connectors;
+    private Connector connector;
+    private Elevators elevators = null;
+    private ArrayList<Worker> workers;
 
-    public Controler(){
-        connectors = new ArrayList<Connector>();
+
+    public Controler(String host, int port) {
+        connector = new Connector(host, port, workers);
+
     }
 
 
