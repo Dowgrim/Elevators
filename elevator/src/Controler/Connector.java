@@ -22,8 +22,6 @@ import java.util.StringTokenizer;
  * Created by Michael on 14/03/2016.
  */
 public class Connector extends Thread{
-    protected static int outPort = 4711;
-    protected static int inPort = 4712;
 
     private ArrayList<Worker> workers;
 
@@ -35,21 +33,13 @@ public class Connector extends Thread{
 
     public Connector(String host, int port, ArrayList<Worker> w){
         try {
-            socket = new Socket(InetAddress.getByName(host), outPort);
+            socket = new Socket(InetAddress.getByName(host), Controler.outPort);
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try {
-            MakeAll.init(host, inPort);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override

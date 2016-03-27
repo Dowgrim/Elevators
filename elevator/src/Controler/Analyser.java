@@ -60,12 +60,13 @@ public class Analyser extends Thread {
         }
         if (tokens[0].equalsIgnoreCase("f") && tokens[1] != null && tokens[2] != null) {
             System.out.println("The elevator " + tokens[1] + " is on the flor " + tokens[2]);
-            workers.get(elevator).setActualFloor(value).start();
+            workers.get(elevator).setActualFloor(value);
+            workers.get(elevator).actualise();
             return;
         }
         if (tokens[0].equalsIgnoreCase("p") && tokens[1] != null && tokens[2] != null) {
             System.out.println("Elevator " + tokens[1] + "want to go to the floor " + tokens[2]);
-            workers.get(elevator).setButtonNumber(value).start();
+            workers.get(elevator).addFloor(value);
             return;
         }
         if (tokens[0].equalsIgnoreCase("b") && tokens[1] != null && tokens[2] != null) {
@@ -78,30 +79,19 @@ public class Analyser extends Thread {
     /**
      * determine the elevator to use
      * @param floor
-     * @param destination
+     * @param dir
      */
-    public void determine(int floor, int destination)
+    public void determine(int floor, int dir)
     {
-        //check direction
-        int dir;
-        if(destination - floor > 0)
-            dir = 1;
-        else 
-            dir = -1;
+        int min = 50, temp;
 
-        ArrayList<worker> possible = new ArrayList<worker>;
-
-        for(worker w: workers)
-        {
-            if(w.getdir() == dir)  //if elevator direction matches
-            {
-                if (dir == 1 && w.getFloor() < floor - 1)//going up and below floor 
-                   possible.add(w); 
-                else if(dir == -1 && w.getFloor() > floor + 1) //going down and elevator above floor
-                    possible.add(w);
+        for(Worker w: workers){
+            temp = w.getDistance(floor, dir);
+            if(temp < min){
+                min = temp;
             }
         }
 
-        //out of possible ones, could do by closest to request or furthest    
+        workers.get(min).addFloor(floor);
     }
 }
