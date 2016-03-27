@@ -63,26 +63,20 @@ public class Worker {
         return dests.get(dests.size()-1);
     }
 
-    public void addFloor(int x)  {
-        if(dests.size() == 0)
-        {
+    public void addFloor(int x) {
+        if(dests.size() == 0){
             dests.add(x);
-        }
-        else
-        {
-            for (int i = 0; i < dests.size(); i++)
+        }else{
+            for (int i = 1; i < dests.size(); i++)
             {
-                if(dir == 1) //if it is going up
-                {
-                    if(dests.get(i) < x) continue; //floor is higher than this
-                    if(dests.get(i) == x) return; //already have the floor in the list
-                    dests.add(i, x);
-                }
-                else if (dir == -1) //if it is going down
-                {
-                    if(dests.get(i) > x) continue; //floor is lower than this
-                    if(dests.get(i) == x) return; //already have the floor in the list
-                    dests.add(i, x) ;
+                if(dests.get(i-1) < dests.get(i)){ //if it is going up
+                    if (dests.get(i - 1) < x) continue; //floor is higher than this
+                    if (dests.get(i - 1) == x) return; //already have the floor in the list
+                    dests.add(i - 1, x);
+                }else{ //if it is going down
+                    if(dests.get(i-1) > x) continue; //floor is lower than this
+                    if(dests.get(i-1) == x) return; //already have the floor in the list
+                    dests.add(i-1, x) ;
                 }
             }
         }
