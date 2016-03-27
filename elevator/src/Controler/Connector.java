@@ -79,7 +79,7 @@ public class Connector extends Thread{
         try {
             while ((msg = input.readLine()) != null) {
                 if (msg.equals("")) continue;
-                workers.get(nextWorker++).setMsg(msg).start();
+                new Analyser(msg, workers).start();
             }
         } catch (IOException e) {
             e.printStackTrace();

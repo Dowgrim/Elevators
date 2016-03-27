@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class Controler {
 
     private Connector connector;
-    private Elevators elevators = null;
     private ArrayList<Worker> workers;
 
 
@@ -23,6 +22,9 @@ public class Controler {
         connector = new Connector(host, port, workers);
 
     }
+
+
+
 
 
 }
