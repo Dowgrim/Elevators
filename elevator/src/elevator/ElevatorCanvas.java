@@ -2,6 +2,7 @@ package elevator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.net.URL;
 
 /**
@@ -49,9 +50,9 @@ public class ElevatorCanvas extends JPanel {
     MediaTracker tracker = new MediaTracker(new JPanel());
     for (int i = 0; i < elevatorImages.length; i++ ) {
       String imageFileName = "images/elevatordoorsopen" + i + ".gif";
-      URL imageURL = ClassLoader.getSystemResource(imageFileName);
+      File imageURL = new File(imageFileName);
       if (imageURL != null) {
-        elevatorImages[i] = Toolkit.getDefaultToolkit().getImage(imageURL);
+        elevatorImages[i] = Toolkit.getDefaultToolkit().getImage(imageURL.getAbsolutePath());
         tracker.addImage(elevatorImages[i], 0);
       } else {
         System.err.println("Fatal error: Image file " + imageFileName + " not found");

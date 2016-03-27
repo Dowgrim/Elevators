@@ -203,7 +203,7 @@ public class Elevators {
   /**
    * Default number of elevators = 1
    */
-  public final static int DefaultNumberOfElevators = 1;
+  public final static int DefaultNumberOfElevators = 3;
   /**
    * Default top floor number = 2
    */
@@ -266,7 +266,7 @@ public class Elevators {
    * A boolean option that indicates whether a TCP socket(s) must be open for for input/output.
    * Defaults to false. Set by "-tcp" command line option
    */
-  protected static boolean tcp = false;
+  protected static boolean tcp = true;
   /**
    * A boolean option that indicates whether an object with the getAllImpl class must
    * be created and its remote reference (stub with the GetAll remote interface)
@@ -279,7 +279,7 @@ public class Elevators {
    * suitable interfaces.
    * The option defaults to false (do not use RMI). Set by "-rmi" command line option
    */
-  protected static boolean rmi = false;
+  protected static boolean rmi = true;
   /**
    * The input port number to which a TCP socket must be bound to provide an input stream
    * for reading control commands if the application starts with -tcp option.
@@ -292,7 +292,7 @@ public class Elevators {
    * if the application starts with -tcp option.
    * Defaults to 4711. Can be changed with "-tcpout port" command line argument.
    */
-  protected static int outPort = defaultPort + 1;
+  protected static int outPort = defaultPort;
   /**
    * The name of the host where rmiregitry provides Naming service. Defaults to
    * "localhost". Can be changed by calling the <code>init</code> static method

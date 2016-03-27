@@ -68,7 +68,8 @@ public class ElevatorImpl extends UnicastRemoteObject implements Elevator {
     number = elevatorNumber;
   }
   public void down() throws RemoteException { // corresponds to "m number -1"
-    io.motorRMI(number, Elevators.DOWN);
+    io.motorRMI(number,
+            Elevators.DOWN);
   }
   public void stop() throws RemoteException { // corresponds to "m number 0"
     io.motorRMI(number, Elevators.STOP);

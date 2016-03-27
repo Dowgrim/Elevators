@@ -2,6 +2,7 @@ package elevator;
 
 import java.net.*;
 import java.io.*;
+import java.rmi.registry.LocateRegistry;
 import java.util.StringTokenizer;
 import java.rmi.RMISecurityManager;
 import java.rmi.Naming;
@@ -56,8 +57,8 @@ public class ElevatorIO extends Thread {
  */
   public ElevatorIO(Elevators elevators) {
     super();
+    System.setProperty("java.security.policy","file:elevator/lib/rmi.policy");
     this.allElevators = elevators.allElevators;
-    if (Elevators.tcp) connectToClient(Elevators.inPort, Elevators.outPort);
     if (Elevators.rmi) {
       try {
         if (System.getSecurityManager() == null) {
@@ -67,13 +68,16 @@ public class ElevatorIO extends Thread {
           + ":" + Elevators.rmiPort
           + "/GetAll", (GetAll)(new GetAllImpl());*/
         //new SocketPermission("localhost:1024-", "accept,connect,listen,resolve");
-        Naming.rebind("//localhost/GetAll", (GetAll)(new GetAllImpl()));
+          LocateRegistry.createRegistry(1099);
+          Naming.rebind("//localhost/GetAll", (GetAll)(new GetAllImpl()));
       } catch (Exception e) {
         System.err.println("Failed to create an RMI interface. Bye, bye.");
         e.printStackTrace(System.err);
         System.exit(1);
       }
     }
+    if (Elevators.tcp) connectToClient(Elevators.inPort, Elevators.outPort);
+    System.out.println("done");
   }
   /**
    * Opens a TCP socket or a couple of sockets (if different ports are specified for
