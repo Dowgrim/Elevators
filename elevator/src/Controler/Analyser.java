@@ -80,7 +80,28 @@ public class Analyser extends Thread {
      * @param floor
      * @param destination
      */
-    public void determine(int floor, int destination){
+    public void determine(int floor, int destination)
+    {
+        //check direction
+        int dir;
+        if(destination - floor > 0)
+            dir = 1;
+        else 
+            dir = -1;
 
+        ArrayList<worker> possible = new ArrayList<worker>;
+
+        for(worker w: workers)
+        {
+            if(w.getdir() == dir)  //if elevator direction matches
+            {
+                if (dir == 1 && w.getFloor() < floor - 1)//going up and below floor 
+                   possible.add(w); 
+                else if(dir == -1 && w.getFloor() > floor + 1) //going down and elevator above floor
+                    possible.add(w);
+            }
+        }
+
+        //out of possible ones, could do by closest to request or furthest    
     }
 }

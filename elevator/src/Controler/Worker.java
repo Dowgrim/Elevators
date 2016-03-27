@@ -17,20 +17,25 @@ public class Worker extends Thread {
     private int buttonNumber;
     private int value = 0;
 
+    private ArrayList<Integer> floors = new ArrayList<Integer>; 
+    private int hreq;
+    private int lreq; 
+    private int dir; 
+
     public Worker(){
 
     }
 
     @Override
-    public void run(){
+    public void run()
+    {
 
     }
 
 
-
-
-
-    private void answer() {
+    private void answer() 
+    {
+        //SOMEWHERE, add requests into sorted array list
     }
 
     public Worker setActualFloor(int aF) {
@@ -42,4 +47,16 @@ public class Worker extends Thread {
         this.buttonNumber = buttonNumber;
         return this;
     }
+
+    int getDir ()
+    {
+        return dir;
+    }
+
+    int getFloor()
+    {
+        return actualFloor;
+    }
+
+
 }
