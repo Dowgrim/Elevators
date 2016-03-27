@@ -15,9 +15,6 @@ public class Worker {
     private int actualFloor = 0;
 
     private ArrayList<Integer> dests = new ArrayList<Integer>();
-    private int hreq;
-    private int lreq; 
-    private int dir; 
 
     public Worker(Elevator elev){
         elevator = elev;
