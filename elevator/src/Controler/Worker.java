@@ -29,13 +29,9 @@ public class Worker extends Thread {
     @Override
     public void run()
     {
-
-    }
-
-
-    private void answer() 
-    {
-        //SOMEWHERE, add requests into sorted array list
+        //always be handeling moement from floors
+        //if floors is empty, wait for floors to not be empty
+        //have to listen for new floors being added dynamically 
     }
 
     public Worker setActualFloor(int aF) {
@@ -46,6 +42,41 @@ public class Worker extends Thread {
     public Worker setButtonNumber(int buttonNumber) {
         this.buttonNumber = buttonNumber;
         return this;
+    }
+
+    void addFloor(int x)
+    {
+        if(floors.size() == 0)
+        {
+            if(x - actualFloor > 0)
+                dir = 1;
+            if(x - actualFloor < 0)
+                dir = -1;
+            else
+            {
+                return; //do nothing 
+            }
+            floors.add(x);
+        }   
+        else
+        {
+            for (int i = 0; i < floors.size(); i++)
+            {
+                if(dir == 1) //if it is going up
+                {
+                    if(floors.get(i) < x) continue; //floor is higher than this 
+                    if(floors.get(i) == x) return; //already have the floor in the list
+                    add(i, x) 
+                }
+                else if (dir == -1) //if it is going down
+                {
+                    if(floors.get(i) > x) continue; //floor is lower than this 
+                    if(floors.get(i) == x) return; //already have the floor in the list
+                    floors.add(i, x) 
+                }
+            }             
+        } 
+
     }
 
     int getDir ()
